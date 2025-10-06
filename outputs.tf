@@ -147,31 +147,58 @@ output "jenkins_infra_data_report" {
 }
 
 # infra.ci Azure storage credentials
-output "infraci_pluginsjenkinsio_fileshare_serviceprincipal_writer_application_client_id" {
-  value = module.infraci_pluginsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_id
-}
-output "infraci_pluginsjenkinsio_fileshare_serviceprincipal_writer_application_client_password" {
+output "infraci_reportsjenkinsio_azurefileshare_serviceprincipal" {
   sensitive = true
-  value     = module.infraci_pluginsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_password
+
+  value = <<EOT
+# reports.jenkins.io
+- name: REPORTS_SERVICE_PRINCIPAL_WRITER_CLIENT_ID
+  value: "${module.infraci_reportsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_id}"
+- name: REPORTS_SERVICE_PRINCIPAL_WRITER_CLIENT_SECRET
+  value: "${module.infraci_reportsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_password}"
+EOT
 }
-output "infraci_contributorsjenkinsio_fileshare_serviceprincipal_writer_application_client_id" {
-  value = module.infraci_contributorsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_id
-}
-output "infraci_contributorsjenkinsio_fileshare_serviceprincipal_writer_application_client_password" {
+output "infraci_pluginsjenkinsio_azurefileshare_serviceprincipal" {
   sensitive = true
-  value     = module.infraci_contributorsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_password
+
+  value = <<EOT
+# plugins.jenkins.io
+- name: INFRACI_PLUGINSJENKINSIO_FILESHARE_SERVICE_PRINCIPAL_WRITER_CLIENT_ID
+  value: "${module.infraci_pluginsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_id}"
+- name: INFRACI_PLUGINSJENKINSIO_FILESHARE_SERVICE_PRINCIPAL_WRITER_CLIENT_PASSWORD
+  value: "${module.infraci_pluginsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_password}"
+EOT
 }
-output "infraci_docsjenkinsio_fileshare_serviceprincipal_writer_application_client_id" {
-  value = module.infraci_docsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_id
-}
-output "infraci_docsjenkinsio_fileshare_serviceprincipal_writer_application_client_password" {
+output "infraci_contributorsjenkinsio_azurefileshare_serviceprincipal" {
   sensitive = true
-  value     = module.infraci_docsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_password
+
+  value = <<EOT
+# contributors.jenkins.io
+- name: CONTRIBUTORS_SERVICE_PRINCIPAL_WRITER_CLIENT_ID
+  value: "${module.infraci_contributorsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_id}"
+- name: CONTRIBUTORS_SERVICE_PRINCIPAL_WRITER_CLIENT_SECRET
+  value: "${module.infraci_contributorsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_password}"
+EOT
 }
-output "infraci_statsjenkinsio_fileshare_serviceprincipal_writer_application_client_id" {
-  value = module.infraci_statsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_id
-}
-output "infraci_statsjenkinsio_fileshare_serviceprincipal_writer_application_client_password" {
+output "infraci_docsjenkinsio_azurefileshare_serviceprincipal" {
   sensitive = true
-  value     = module.infraci_statsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_password
+
+  value = <<EOT
+# docs.jenkins.io
+- name: DOCS_SERVICE_PRINCIPAL_WRITER_CLIENT_ID
+  value: "${module.infraci_docsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_id}"
+- name: DOCS_SERVICE_PRINCIPAL_WRITER_CLIENT_SECRET
+  value: "${module.infraci_docsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_password}"
+EOT
+}
+output "infraci_statsjenkinsio_azurefileshare_serviceprincipal" {
+  sensitive = true
+
+  value = <<EOT
+# stats.jenkins.io
+- name: STATS_SERVICE_PRINCIPAL_WRITER_CLIENT_ID
+  value: "${module.infraci_statsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_id}"
+- name: STATS_SERVICE_PRINCIPAL_WRITER_CLIENT_SECRET
+  value: "${module.infraci_statsjenkinsio_fileshare_serviceprincipal_writer.fileshare_serviceprincipal_writer_application_client_password}"
+EOT
 }
